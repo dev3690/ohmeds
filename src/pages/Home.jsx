@@ -5,12 +5,33 @@ import HeroSection from '../components/HeroSection';
 import CategoriesSection from '../components/CategoriesSection';
 import FeaturedProducts from '../components/FeaturedProducts';
 import Footer from '../components/Footer';
+import OfferSection from '../components/OfferSection';
+import Offer1 from '../assets/offers-image/offer1.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/OfferSlider.css'; // Import your CSS file
 
 const Home = () => {
+
+  const offers = [
+    {
+      image: {Offer1},
+      title: 'Offer 1 Title',
+      description: 'Offer 1 Description',
+      buttonText: 'Buy Now',
+    },
+    {
+      image: 'path/to/offer2.jpg',
+      title: 'Offer 2 Title',
+      description: 'Offer 2 Description',
+      buttonText: 'Learn More',
+    },
+  ];
+
   return (
     <HomeContainer>
       {/* <Header /> */}
       <HeroSection />
+      <OfferSection offers={offers}/>
       <CategoriesSection />
       <FeaturedProducts />
       <Footer />

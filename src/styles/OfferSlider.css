@@ -1,0 +1,71 @@
+.offer-slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .offer-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .offer-slide {
+    width: 100%;
+    height: 200px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    opacity: 0;
+    transform: translateX(100%); /* Initial position offscreen */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  
+  .offer-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .offer-content {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  }
+  
+  .buy-now-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .prev-button,
+  .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .prev-button {
+    left: 20px;
+  }
+  
+  .next-button {
+    right: 20px;
+  }
+  
+  /* Responsive Styling (Optional) */
+  @media screen and (max-width: 768px) {
+    .offer-slide {
+      height: 200px;
+    }
+  }
