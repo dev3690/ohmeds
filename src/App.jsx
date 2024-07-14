@@ -44,7 +44,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Header /> {/* Add your Header component here */}
+        <Header /> 
         <Routes>
           <Route path="/" element={<Home />} />
           {/* Add other routes here */}

@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 const Home = () => {
   return (
     <HomeContainer>
-      <Header />
+      {/* <Header /> */}
       <HeroSection />
       <CategoriesSection />
       <FeaturedProducts />

@@ -18,6 +18,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import logo from '../assets/ohmeds-logo.jpg'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const Sidebar = ({ drawerOpen, toggleDrawer }) => {
@@ -67,9 +68,9 @@ const Sidebar = ({ drawerOpen, toggleDrawer }) => {
       >
         <Box sx={{ padding: 2 }}>
           <img
-            src="/path/to/logo.png"
+            src={logo}
             alt="Logo"
-            style={{ width: '100%', marginBottom: '20px' }}
+            style={{ width: '30%', marginBottom: '20px' }}
           />
           <TextField
             variant="outlined"
