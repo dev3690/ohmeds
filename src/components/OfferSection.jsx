@@ -10,16 +10,24 @@ const CarouselComponent = () => {
   };
 
   return (
-    <Container>
+    <Container
+      style={{
+        maxWidth: '85vw', // Set max width to 85% of the viewport width
+        margin: '40px auto', // Add margin top and bottom
+        borderRadius: '10px', // Add border radius
+        padding: '20px', // Add padding
+        backgroundColor: 'white', // Set background color to white
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' // Add box shadow
+      }}
+    >
       <Row>
         <Col md={12}>
           <Carousel
             activeIndex={index}
             onSelect={handleSelect}
             style={{
-              maxWidth: '85vw', // Set max width to 85% of the viewport width
-              margin: '0 auto', // Center the carousel horizontally
-              backgroundColor: 'black'
+              borderRadius: '10px', // Add border radius to carousel
+              overflow: 'hidden' // Add overflow hidden to prevent carousel controls from overflowing
             }}
           >
             <Carousel.Item style={{ width: '100%', height: '60vh'}}>
@@ -85,10 +93,52 @@ const CarouselComponent = () => {
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
+          <style>
+            {`
+            .carousel-control-prev,.carousel-control-next {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: lightblue;
+                border: none;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1;
+              }
+
+            .carousel-control-prev {
+                left: 20px;
+              }
+
+            .carousel-control-next {
+                right: 20px;
+              }
+
+            .carousel-control-prev-icon,.carousel-control-next-icon {
+                width: 20px;
+                height: 20px;
+                background-size: 20px 20px;
+              }
+
+              @media (max-width: 768px) {
+              .carousel-control-prev,.carousel-control-next {
+                  width: 30px;
+                  height: 30px;
+                }
+
+.carousel-control-prev-icon,.carousel-control-next-icon {
+                  width: 15px;
+                  height: 15px;
+                }
+              }
+            `}
+          </style>
         </Col>
       </Row>
     </Container>
   );
 };
 
-export default CarouselComponent;
+export default CarouselComponent;   
+
+

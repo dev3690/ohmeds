@@ -8,7 +8,6 @@ import Footer from '../components/Footer';
 import OfferSection from '../components/OfferSection';
 import Offer1 from '../assets/offers-image/offer1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/OfferSlider.css'; // Import your CSS file
 
 const Home = () => {
 
