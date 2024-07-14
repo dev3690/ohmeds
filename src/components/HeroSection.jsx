@@ -1,52 +1,90 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import SearchIcon from '@mui/icons-material/Search';
 
 const HeroSection = () => {
+  const [placeholder, setPlaceholder] = useState('Search for Medicine');
+  const phrases = ['Search for Medicine', 'Search for Machines', 'Search for vegetables', 'Search for Fruits'];
+
+  useEffect(() => {
+    let index = 0;
+    const intervalId = setInterval(() => {
+      setPlaceholder(phrases[index]);
+      index = (index + 1) % phrases.length;
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [phrases]);
+
   return (
     <HeroContainer>
       <HeroText>
-        <h1>Discover the Best Products</h1>
-        <p>Shop the latest products from top brands</p>
-        <HeroButton>Shop Now</HeroButton>
+        <h1>What are you Looking for?</h1>
+        <SearchBar>
+          <SearchIcon sx={{ fontSize: 48, marginRight: 1, color: '#ccc' }} />
+          <SearchInput
+            type="search"
+            placeholder={placeholder}
+            aria-label="Search"
+          />
+          <SearchButton>Search</SearchButton>
+        </SearchBar>
       </HeroText>
     </HeroContainer>
   );
 };
 
 const HeroContainer = styled.section`
-  background: url('/path/to/your/hero-image.jpg') no-repeat center center/cover;
-  height: 400px;
+  background-color: #e9f5ff;
+  height: 60vh; /* Make it full height */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 `;
 
 const HeroText = styled.div`
   text-align: center;
-  color: #fff;
-
+  color: #212529;
   h1 {
-    font-size: 48px;
-  }
-
-  p {
-    font-size: 24px;
-    margin-top: 10px;
+    font-size: 36px;
+    font-weight: bold;
   }
 `;
 
-const HeroButton = styled.button`
+const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 10px;
   margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 18px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
+  width: 500px; /* Make it responsive */
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 
-export default HeroSection;
+const SearchInput = styled.input`
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const SearchButton = styled.button`
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+`;
+
+export default HeroSection; 

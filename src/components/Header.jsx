@@ -333,8 +333,8 @@ const Header = () => {
                 OHMEDS
               </Typography>
             </Box>
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', alignItems: 'left' }}>
-              <Typography variant="h5" color="inherit" sx={{ marginBottom: 2 }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', alignItems: 'left', marginLeft: 5 }}>
+              <Typography variant="h5" color="inherit" sx={{ marginBottom: 1   }}>
                 Hello Charles
               </Typography>
               <Grid container spacing={4} direction="row">
