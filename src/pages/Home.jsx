@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ShopByCategories from '../components/ShopByCategories';
 import ProductsCards from '../components/ProductsCards';
 import TestimonialCarousel from '../components/TestimonialCarousel';
-
+import FaqAccordion from '../components/FaqAccordion'
 
 
 
@@ -41,6 +41,7 @@ const Home = () => {
       <ProductsCards />
       {/* <CategoriesSection /> */}
       <TestimonialCarousel />
+      <FaqAccordion />
       <FeaturedProducts />
       <Footer />
     </HomeContainer>
