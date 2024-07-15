@@ -9,7 +9,12 @@ import OfferSection from '../components/OfferSection';
 import Offer1 from '../assets/offers-image/offer1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShopByCategories from '../components/ShopByCategories';
-import ProductsCards from '../components/ProductsCards'
+import ProductsCards from '../components/ProductsCards';
+import TestimonialCarousel from '../components/TestimonialCarousel';
+
+
+
+
 const Home = () => {
 
   const offers = [
@@ -34,7 +39,8 @@ const Home = () => {
       <OfferSection offers={offers}/>
       <ShopByCategories />
       <ProductsCards />
-      <CategoriesSection />
+      {/* <CategoriesSection /> */}
+      <TestimonialCarousel />
       <FeaturedProducts />
       <Footer />
     </HomeContainer>
