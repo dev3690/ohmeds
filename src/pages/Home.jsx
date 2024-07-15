@@ -8,7 +8,8 @@ import Footer from '../components/Footer';
 import OfferSection from '../components/OfferSection';
 import Offer1 from '../assets/offers-image/offer1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import ShopByCategories from '../components/ShopByCategories';
+import ProductsCards from '../components/ProductsCards'
 const Home = () => {
 
   const offers = [
@@ -31,6 +32,8 @@ const Home = () => {
       {/* <Header /> */}
       <HeroSection />
       <OfferSection offers={offers}/>
+      <ShopByCategories />
+      <ProductsCards />
       <CategoriesSection />
       <FeaturedProducts />
       <Footer />

@@ -1,0 +1,36 @@
+  body {
+    background-color: #f0f8ff;
+  }
+  
+  .list-group-item {
+    background-color: #ffedd5;
+    border: none;
+  }
+  
+  .list-group-item:hover, .list-group-item.active {
+    background-color: #ffdab9;
+    color: #000;
+    border: none;
+  }
+  
+  .card {
+    background-color: #fff;
+  }
+  
+  .card-title {
+    color: #333;
+  }
+  
+  .card-text {
+    color: #666;
+  }
+  
+  .btn-primary {
+    background-color: #1e90ff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1c86ee;
+  }
+  
