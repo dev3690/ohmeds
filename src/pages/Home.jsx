@@ -13,7 +13,7 @@ import ProductsCards from '../components/ProductsCards';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import FaqAccordion from '../components/FaqAccordion'
 
-
+import ProductDetails from '../components/ProductDetails'
 
 const Home = () => {
 
@@ -43,6 +43,7 @@ const Home = () => {
       <TestimonialCarousel />
       <FaqAccordion />
       <FeaturedProducts />
+      <ProductDetails />
       <Footer />
     </HomeContainer>
   );
