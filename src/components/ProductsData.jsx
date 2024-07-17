@@ -4,79 +4,6 @@ import Product2 from '../assets/product-images/product2.webp';
 import Product1 from '../assets/product-images/product1.jpg';
 
 
-// const products = [
-//   {
-//     id: 1,
-//     name: 'All Natural Italian-Style Chicken Meatballs',
-//     category: 'Hodo Foods',
-//     brand: 'NestFood',
-//     price: 238.85,
-//     originalPrice: 245.8,
-//     rating: 4.0,
-//     image: Product1,
-//     badge: 'Save 35%',
-//   },
-//   {
-//     id: 2,
-//     name: 'Angie’s Boomchickapop Sweet and womnies',
-//     category: 'Hodo Foods',
-//     brand: 'Stouffer',
-//     price: 238.85,
-//     originalPrice: 245.8,
-//     rating: 4.0,
-//     image: Product2,
-//     badge: 'Sale',
-//   },
-//   {
-//     id: 3,
-//     name: 'Foster Farms Takeout Crispy Classic',
-//     category: 'Hodo Foods',
-//     brand: 'NestFood',
-//     price: 238.85,
-//     originalPrice: 245.8,
-//     rating: 4.0,
-//     image: Product1,
-//     badge: 'Best sale',
-//   },
-//   {
-//     id: 4,
-//     name: 'Blue Diamond Almonds Lightly Salted',
-//     category: 'Hodo Foods',
-//     brand: 'Stouffer',
-//     price: 238.85,
-//     originalPrice: 245.8,
-//     rating: 4.0,
-//     image: Product2,
-//     badge: 'Special',
-//   },
-//   {
-//     id: 5,
-//     name: 'Chobani Complete Vanilla Greek Yogurt',
-//     category: 'Hodo Foods',
-//     brand: 'NestFood',
-//     price: 238.85,
-//     originalPrice: 245.8,
-//     rating: 4.0,
-//     image: Product1,
-//     badge: 'Sale',
-//   },
-//   {
-//     id: 6,
-//     name: 'Canada Dry Ginger Ale - 2 L Bottle',
-//     category: 'Hodo Foods',
-//     brand: 'Stouffer',
-//     price: 238.85,
-//     originalPrice: 245.8,
-//     rating: 4.0,
-//     image: Product2,
-//     badge: 'Special',
-//   },
-// ];
-
-// export default products;
-
-
-
 const products = [
   {
     id: 1,
@@ -92,10 +19,28 @@ const products = [
       Product1
     ],
     badge: 'Save 35%',
+    description: {
+      longDescription: 'These Italian-style chicken meatballs are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      facts: [
+        'High in protein',
+        'Low in fat',
+        'No artificial ingredients'
+      ],
+      tableContent: {
+        protein: '20g',
+        fat: '5g',
+        carbohydrates: '10g',
+        sodium: '200mg'
+      },
+    },
+    keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
+    ingredients: 'Chicken, breadcrumbs, Parmesan cheese, Italian seasoning...',
+    sideEffects: 'None known. Please consult with a physician if you have allergies...',
+    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
   },
   {
     id: 2,
-    name: 'All Natural Italian-Style Chicken Meatballs',
+    name: 'Burger, jo apne kabhi nahi khaya hoga',
     category: 'Hodo Foods',
     brand: 'NestFood',
     price: 238.85,
@@ -107,10 +52,28 @@ const products = [
       Product1
     ],
     badge: 'Save 35%',
+    description: {
+      longDescription: 'These Italian-style chicken meatballs are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      facts: [
+        'High in protein',
+        'Low in fat',
+        'No artificial ingredients'
+      ],
+      tableContent: {
+        protein: '20g',
+        fat: '5g',
+        carbohydrates: '10g',
+        sodium: '200mg'
+      },
+    },
+    keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
+    ingredients: 'Chicken, breadcrumbs, Parmesan cheese, Italian seasoning...',
+    sideEffects: 'None known. Please consult with a physician if you have allergies...',
+    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
   },
   {
     id: 3,
-    name: 'All Natural Italian-Style Chicken Meatballs',
+    name: 'Complain with dudh ki shakti',
     category: 'Hodo Foods',
     brand: 'NestFood',
     price: 238.85,
@@ -122,8 +85,26 @@ const products = [
       Product1
     ],
     badge: 'Save 35%',
+    description: {
+      longDescription: 'These Italian-style chicken meatballs are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      facts: [
+        'High in protein',
+        'Low in fat',
+        'No artificial ingredients'
+      ],
+      tableContent: {
+        protein: '20g',
+        fat: '5g',
+        carbohydrates: '10g',
+        sodium: '200mg'
+      },
+    },
+    keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
+    ingredients: 'Chicken, breadcrumbs, Parmesan cheese, Italian seasoning...',
+    sideEffects: 'None known. Please consult with a physician if you have allergies...',
+    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
   },
-  // Add more products with multiple images similarly
+  // Add similar structure for other products
 ];
 
 export default products;

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
@@ -11,23 +10,27 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import products from '../components/ProductsData';
 import Breadcrumbs from '../components/Breadcrumbs';
 import '../styles/ProductDetails.css';
+import ProductsCards from './ProductsCards';
 
 const ProductDetail = () => {
     const { id } = useParams();
     const product = products.find((p) => p.id === parseInt(id));
+    const [selectedSection, setSelectedSection] = useState('description');
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [selectedImage, setSelectedImage] = useState(product?.images[0]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setSelectedImageIndex((prevIndex) => {
-                const newIndex = (prevIndex + 1) % product.images.length;
-                setSelectedImage(product.images[newIndex]);
-                return newIndex;
-            });
-        }, 3000);
-        return () => clearInterval(interval);
-    }, [product.images]);
+        if (product && product.images) {
+            const interval = setInterval(() => {
+                setSelectedImageIndex((prevIndex) => {
+                    const newIndex = (prevIndex + 1) % product.images.length;
+                    setSelectedImage(product.images[newIndex]);
+                    return newIndex;
+                });
+            }, 3000);
+            return () => clearInterval(interval);
+        }
+    }, [product]);
 
     if (!product) {
         return <div>Product not found</div>;
@@ -117,6 +120,72 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
+            <div className="product-description-container">
+                <div className="product-description-tabs">
+                    <Button onClick={() => setSelectedSection('description')}>Description</Button>
+                    <Button onClick={() => setSelectedSection('keyBenefits')}>Key Benefits</Button>
+                    <Button onClick={() => setSelectedSection('ingredients')}>Ingredients</Button>
+                    <Button onClick={() => setSelectedSection('sideEffects')}>Side Effects</Button>
+                    <Button onClick={() => setSelectedSection('howToUse')}>How to Use</Button>
+                </div>
+                <div className="product-description-content">
+                    {selectedSection === 'description' && (
+                        <>
+                            <h2>Description</h2>
+                            <p>{product.description.longDescription}</p>
+                            <h3>Facts</h3>
+                            <ul>
+                                {product.description.facts.map((fact, index) => (
+                                    <li key={index}>{fact}</li>
+                                ))}
+                            </ul>
+                            <h3>Table of Contents</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nutrient</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.entries(product.description.tableContent).map(([nutrient, amount], index) => (
+                                        <tr key={index}>
+                                            <td>{nutrient}</td>
+                                            <td>{amount}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </>
+                    )}
+                    {selectedSection === 'keyBenefits' && (
+                        <>
+                            <h2>Key Benefits</h2>
+                            <p>{product.keyBenefits}</p>
+                        </>
+                    )}
+                    {selectedSection === 'ingredients' && (
+                        <>
+                            <h2>Ingredients</h2>
+                            <p>{product.ingredients}</p>
+                        </>
+                    )}
+                    {selectedSection === 'sideEffects' && (
+                        <>
+                            <h2>Side Effects</h2>
+                            <p>{product.sideEffects}</p>
+                        </>
+                    )}
+                    {selectedSection === 'howToUse' && (
+                        <>
+                            <h2>How to Use</h2>
+                            <p>{product.howToUse}</p>
+                        </>
+                    )}
+                </div>
+                <ProductsCards />
+            </div>
+
         </>
     );
 };

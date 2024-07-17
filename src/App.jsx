@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           {/* Add other routes here */}
           <Route path="/" exact element={<ProductsCards />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
         {/* </Switch> */}
       </Router>
