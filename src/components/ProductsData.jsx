@@ -7,7 +7,7 @@ import Product1 from '../assets/product-images/product1.jpg';
 const products = [
   {
     id: 1,
-    name: 'All Natural Italian-Style Chicken Meatballs',
+    name: 'All Natural Italian-Style Khandvi Dokla',
     category: 'Hodo Foods',
     brand: 'NestFood',
     price: 238.85,
@@ -20,7 +20,7 @@ const products = [
     ],
     badge: 'Save 35%',
     description: {
-      longDescription: 'These Italian-style chicken meatballs are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
       facts: [
         'High in protein',
         'Low in fat',
@@ -34,7 +34,7 @@ const products = [
       },
     },
     keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
-    ingredients: 'Chicken, breadcrumbs, Parmesan cheese, Italian seasoning...',
+    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning...',
     sideEffects: 'None known. Please consult with a physician if you have allergies...',
     howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
   },
@@ -53,7 +53,7 @@ const products = [
     ],
     badge: 'Save 35%',
     description: {
-      longDescription: 'These Italian-style chicken meatballs are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
       facts: [
         'High in protein',
         'Low in fat',
@@ -67,7 +67,7 @@ const products = [
       },
     },
     keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
-    ingredients: 'Chicken, breadcrumbs, Parmesan cheese, Italian seasoning...',
+    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning...',
     sideEffects: 'None known. Please consult with a physician if you have allergies...',
     howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
   },
@@ -86,7 +86,7 @@ const products = [
     ],
     badge: 'Save 35%',
     description: {
-      longDescription: 'These Italian-style chicken meatballs are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
       facts: [
         'High in protein',
         'Low in fat',
@@ -100,7 +100,7 @@ const products = [
       },
     },
     keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
-    ingredients: 'Chicken, breadcrumbs, Parmesan cheese, Italian seasoning...',
+    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning...',
     sideEffects: 'None known. Please consult with a physician if you have allergies...',
     howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
   },

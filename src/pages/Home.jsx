@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import CategoriesSection from '../components/CategoriesSection';
 import FeaturedProducts from '../components/FeaturedProducts';
-import Footer from '../components/Footer';
 import OfferSection from '../components/OfferSection';
 import Offer1 from '../assets/offers-image/offer1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,7 +18,7 @@ const Home = () => {
 
   const offers = [
     {
-      image: {Offer1},
+      image: { Offer1 },
       title: 'Offer 1 Title',
       description: 'Offer 1 Description',
       buttonText: 'Buy Now',
@@ -36,22 +35,23 @@ const Home = () => {
     <HomeContainer>
       {/* <Header /> */}
       <HeroSection />
-      <OfferSection offers={offers}/>
+      <OfferSection offers={offers} />
       <ShopByCategories />
       <ProductsCards />
       {/* <CategoriesSection /> */}
       <TestimonialCarousel />
       <FaqAccordion />
-      <FeaturedProducts />
-      <ProductDetails />
-      <Footer />
+      {/* <FeaturedProducts /> */}
+      {/* <ProductDetails /> */}
     </HomeContainer>
   );
 };
 
 const HomeContainer = styled.div`
   // Add your styles here
-  background-color: skyblue;
+  background-color: cyan;
+  margin-bottom: 50px;
+
 
 `;
 

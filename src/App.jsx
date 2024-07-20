@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Header from './components/Header'; // Import your Header component
 import ProductsCards from './components/ProductsCards';
 import ProductDetails from './components/ProductDetails';
+import Footer from './components/Footer';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
         {/* </Switch> */}
+        <Footer />
       </Router>
     </ThemeProvider>
   );
