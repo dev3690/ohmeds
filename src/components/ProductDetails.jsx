@@ -182,8 +182,8 @@ const ProductDetail = () => {
                     )}
                 </div>
             </div>
-                <ProductsCards heading="Similar Products"/>
             </div>
+                <ProductsCards heading="Similar Products"/>
 
 
         </>

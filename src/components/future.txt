@@ -3,7 +3,7 @@ Things to do
 1. Product cards ni height nani krvani che and badhani height same hovi joiye --> Done
 2. Product detail page pr product cards nu heading change avu joiye jemke "Related Products, similar" --> Done
 3. FAQs ni niche border bottom vadharvani che
-4. Product description in product page, description na button jevu karvnu che, border hovi joiye banne ne, buttons and whole container
+4. Product description in product page, description na button jevu karvnu che, border hovi joiye banne ne, buttons and whole container --> Done
 5. Customer Reviews and Photo reviews card of the customer section add in product detail page
 6. Login and sign in page with private routes
 7. Header thodu sarkhu krvanu che, logo pr click kru to home avu joiye,  

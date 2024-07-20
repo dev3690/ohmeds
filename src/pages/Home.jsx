@@ -49,7 +49,7 @@ const Home = () => {
 
 const HomeContainer = styled.div`
   // Add your styles here
-  background-color: cyan;
+  background-color: #e0f7fz;
   margin-bottom: 50px;
 
 
