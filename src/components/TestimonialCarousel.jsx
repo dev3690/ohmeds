@@ -1,13 +1,12 @@
 
-
 // import React from 'react';
 // import Slider from 'react-slick';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
-// import man from '../assets/Reviews/man.png'
-// import woman from '../assets/Reviews/woman.png'
-
+// import man from '../assets/Reviews/man.png';
+// import woman from '../assets/Reviews/woman.png';
+// import '../styles/TestimonialCarousel.css'; // Import the CSS file
 
 // const testimonials = [
 //   {
@@ -61,9 +60,9 @@
 //   };
 
 //   return (
-//     <div className="container mt-5">
-//         <h2>What are Customers Say!</h2>
-//       <Slider {...settings}>
+//     <div className="container mt-5 testimonial-carousel-container">
+//       <h2>What Our Customers Say!</h2>
+//       <Slider className='slickcontainer'  {...settings}>
 //         {testimonials.map((testimonial, index) => (
 //           <div className="testimonial-card" key={index}>
 //             <img src={testimonial.image} alt={testimonial.name} className="rounded-circle" />
@@ -134,6 +133,13 @@ const TestimonialCarousel = () => {
     slidesToScroll: 1,
     responsive: [
       {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
@@ -144,9 +150,9 @@ const TestimonialCarousel = () => {
   };
 
   return (
-    <div className="container mt-5">
-        <h2>What Our Customers Say!</h2>
-      <Slider {...settings}>
+    <div className="container mt-5 testimonial-carousel-container">
+      <h2>What Our Customers Say!</h2>
+      <Slider className="slickcontainer" {...settings}>
         {testimonials.map((testimonial, index) => (
           <div className="testimonial-card" key={index}>
             <img src={testimonial.image} alt={testimonial.name} className="rounded-circle" />
