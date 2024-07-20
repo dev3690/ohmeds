@@ -9,7 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import products from '../components/ProductsData';
 import '../styles/ProductsCards.css'; // Import custom CSS for additional styles
 
-const ProductsCards = () => {
+const ProductsCards = ({heading}) => {
   const [slider, setSlider] = useState(null);
   const navigate = useNavigate();
 
@@ -80,7 +80,7 @@ const ProductsCards = () => {
 
   return (
     <Container>
-      <h2 className="my-4">Popular Bought Items / Limited Special Products</h2>
+      <h2 className="my-4">{heading}</h2>
       <Slider ref={setSlider} {...settings}>
         {products.map((product) => (
           <div key={product.id} className="product-card-container" onClick={() => handleCardClick(product.id)}>

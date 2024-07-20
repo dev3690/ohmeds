@@ -37,7 +37,7 @@ const Home = () => {
       <HeroSection />
       <OfferSection offers={offers} />
       <ShopByCategories />
-      <ProductsCards />
+      <ProductsCards heading="Our Hero Products" />
       {/* <CategoriesSection /> */}
       <TestimonialCarousel />
       <FaqAccordion />

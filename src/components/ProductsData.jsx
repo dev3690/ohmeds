@@ -20,7 +20,7 @@ const products = [
     ],
     badge: 'Save 35%',
     description: {
-      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious. Perfect for any meal, they are easy to prepare and delicious.',
       facts: [
         'High in protein',
         'Low in fat',
@@ -33,10 +33,10 @@ const products = [
         sodium: '200mg'
       },
     },
-    keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
-    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning...',
-    sideEffects: 'None known. Please consult with a physician if you have allergies...',
-    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
+    keyBenefits: 'High in protein, Low in fat, No artificial ingredients These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    sideEffects: 'None known. Please consult with a physician if you have allergies These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....'
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ const products = [
     ],
     badge: 'Save 35%',
     description: {
-      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.Perfect for any meal, they are easy to prepare and delicious.',
       facts: [
         'High in protein',
         'Low in fat',
@@ -66,10 +66,10 @@ const products = [
         sodium: '200mg'
       },
     },
-    keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
-    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning...',
-    sideEffects: 'None known. Please consult with a physician if you have allergies...',
-    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
+    keyBenefits: 'High in protein, Low in fat, No artificial ingredients These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    sideEffects: 'None known. Please consult with a physician if you have allergies These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....'
   },
   {
     id: 3,
@@ -86,7 +86,7 @@ const products = [
     ],
     badge: 'Save 35%',
     description: {
-      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.',
+      longDescription: 'These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious.Perfect for any meal, they are easy to prepare and delicious.',
       facts: [
         'High in protein',
         'Low in fat',
@@ -99,10 +99,10 @@ const products = [
         sodium: '200mg'
       },
     },
-    keyBenefits: 'High in protein, Low in fat, No artificial ingredients...',
-    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning...',
-    sideEffects: 'None known. Please consult with a physician if you have allergies...',
-    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes...'
+    keyBenefits: 'High in protein, Low in fat, No artificial ingredients These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    ingredients: 'Khandvi, breadcrumbs, Parmesan cheese, Italian seasoning These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    sideEffects: 'None known. Please consult with a physician if you have allergies These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....',
+    howToUse: 'Heat in a preheated oven at 375°F for 10-12 minutes These Italian-style Khandvi Dokla are made from all-natural ingredients. Perfect for any meal, they are easy to prepare and delicious....'
   },
   // Add similar structure for other products
 ];

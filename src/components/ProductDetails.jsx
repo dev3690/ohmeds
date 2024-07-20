@@ -95,7 +95,6 @@ const ProductDetail = () => {
                         <Button variant="outlined">60g</Button>
                         <Button variant="outlined">80g</Button>
                         <Button variant="outlined">100g</Button>
-                        <Button variant="outlined">150g</Button>
                     </div>
                     <div className="product-actions">
                         <Button variant="contained" color="primary">
@@ -119,7 +118,6 @@ const ProductDetail = () => {
                         <p>Stock: 8 Items In Stock</p>
                     </div>
                 </div>
-            </div>
             <div className="product-description-container">
                 <div className="product-description-tabs">
                     <Button onClick={() => setSelectedSection('description')}>Description</Button>
@@ -183,8 +181,10 @@ const ProductDetail = () => {
                         </>
                     )}
                 </div>
-                <ProductsCards />
             </div>
+                <ProductsCards heading="Similar Products"/>
+            </div>
+
 
         </>
     );
