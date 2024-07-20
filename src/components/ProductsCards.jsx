@@ -1,5 +1,4 @@
 
-// src/components/ProductsCards.js
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Container, Badge } from 'react-bootstrap';
 import Slider from 'react-slick';
@@ -99,23 +98,29 @@ const ProductsCards = () => {
                 alt={product.name}
                 className="product-image"
               />
-              <Card.Body>
-                <Card.Text className="text-muted">{product.category}</Card.Text>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Text className="text-muted">By {product.brand}</Card.Text>
-                <Card.Text>
-                  <span className="price">${product.price.toFixed(2)}</span>{' '}
-                  <span className="original-price">${product.originalPrice.toFixed(1)}</span>
-                </Card.Text>
-                <Card.Text>
-                  <span className="rating">{product.rating} ⭐</span>
-                </Card.Text>
-                <Button variant="success" className="w-100">
-                  Add To Cart
-                </Button>
-                <Card.Text className="sold-info">Sold: 90/120</Card.Text>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '75%' }}></div>
+              <Card.Body className="card-body">
+                <div>
+                  <div className="category-review">
+                    <Card.Text className="text-muted">{product.category}</Card.Text>
+                    <span className="rating">{product.rating} ⭐</span>
+                  </div>
+                  <Card.Title className="product-name">{product.name}</Card.Title>
+                  <Card.Text className="text-muted">By {product.brand}</Card.Text>
+                </div>
+                <div>
+                  <Card.Text>
+                    <span className="price">${product.price.toFixed(2)}</span>{' '}
+                    <span className="original-price">${product.originalPrice.toFixed(1)}</span>
+                  </Card.Text>
+                  <div className="card-footer">
+                    <Button variant="success" className="add-to-cart-button">
+                      Add To Cart
+                    </Button>
+                  </div>
+                  {/* <Card.Text className="sold-info">Sold: 90/120</Card.Text>
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: '75%' }}></div>
+                  </div> */}
                 </div>
               </Card.Body>
             </Card>
