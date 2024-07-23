@@ -4,7 +4,8 @@ Things to do
 2. Product detail page pr product cards nu heading change avu joiye jemke "Related Products, similar" --> Done
 3. FAQs ni niche border bottom vadharvani che --> Done
 4. Product description in product page, description na button jevu karvnu che, border hovi joiye banne ne, buttons and whole container --> Done
-5. Customer Reviews and Photo reviews card of the customer section add in product detail page
+5. Customer Reviews and Photo reviews card of the customer section add in product detail page --> Done
+8. Customer Review na card vache space add krvani che --> Done
 6. Login and sign in page with private routes
 7. Header thodu sarkhu krvanu che, logo pr click kru to home avu joiye,  
-8. Customer Review na card vache space add krvani che --> Done
+9. Customer review j home page pr che eno bug 
