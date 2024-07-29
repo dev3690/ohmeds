@@ -42,6 +42,7 @@ const Home = () => {
       <TestimonialCarousel />
       <FaqAccordion />
       {/* <FeaturedProducts /> */}
+      
       {/* <ProductDetails /> */}
     </HomeContainer>
   );
