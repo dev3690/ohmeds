@@ -6,6 +6,28 @@ Things to do
 4. Product description in product page, description na button jevu karvnu che, border hovi joiye banne ne, buttons and whole container --> Done
 5. Customer Reviews and Photo reviews card of the customer section add in product detail page --> Done
 8. Customer Review na card vache space add krvani che --> Done
+
+10. Category page pr sorting chalu krvanu che --> Done
+
+-----------------------------------------------------------------------------------------------------------------------------
+ 
+ |``\     /\     |  /   ```|```         |                           
+ |  /    /  \    | /       |            |                              
+ |``\   /````\   |`\       |         \  |  /                                
+ |__/  /      \  |  \   ___|___       \ | /                          
+                                       \!/                
+----------------------------------------------------------------------------------------------------------------------------
+
 6. Login and sign in page with private routes
 7. Header thodu sarkhu krvanu che, logo pr click kru to home avu joiye,  
 9. Customer review j home page pr che eno bug 
+
+
+11. Product Card ma details add krvani che
+12. Mobile view ma 2 card ava joiye per row
+13. Paginatation feature bug 
+14. breadcrumb sarkhu styling apvani che
+
+
+15. refresh kriye che to direct login page pr redirect kri de che... ae prblm
+16. category section in home page styling sarkhu from truemeds

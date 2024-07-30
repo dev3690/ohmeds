@@ -97,6 +97,7 @@ const ProductsCards = ({heading}) => {
                 src={product.images[0]} // Display the first image
                 alt={product.name}
                 className="product-image"
+                style={{ height: '200px', objectFit: 'contain' }} 
               />
               <Card.Body className="card-body">
                 <div>
