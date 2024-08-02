@@ -14,6 +14,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ProductListingPage from './components/ProductListingPage';
 import ShopByCategories from './components/ShopByCategories';
 import Registration  from './components/Registration';
+import ProfilePage from './components/ProfilePage';
 
 function AppWrapper() {
   const navigate = useNavigate();
@@ -53,6 +54,14 @@ function AppWrapper() {
           element={
             <ProtectedRoute>
               <ProductListingPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
             </ProtectedRoute>
           }
         />
