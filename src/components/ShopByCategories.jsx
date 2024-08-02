@@ -1,68 +1,47 @@
+
 // import React, { useState } from 'react';
-// import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
+// import { Container, Row, Col, Card, Button, Nav } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import '../styles/ShopByCategories.css';
-// import Product2 from '../assets/product-images/product2.webp';
-// import Product1 from '../assets/product-images/product1.jpg';
-
-// const categories = [
-//   { id: 1, name: 'Personal care' },
-//   { id: 2, name: 'Healthcare device' },
-//   { id: 3, name: 'Vitamins & supplement' },
-//   { id: 4, name: 'Diabetes' },
-// ];
-
-// const products = {
-//   1: [
-//     { id: 1, name: 'Product 1', image: Product2, description: 'Description 1' },
-//     { id: 2, name: 'Product 2', image: Product1, description: 'Description 2' },
-//   ],
-//   2: [
-//     { id: 3, name: 'BP Monitors', image: Product2, description: 'Description 3' },
-//     { id: 4, name: 'Sterilizers', image: Product1, description: 'Description 4' },
-//     { id: 5, name: 'EKG Machine', image: Product2, description: 'Description 5' },
-//   ],
-//   3: [
-//     { id: 6, name: 'Product 3', image: Product1, description: 'Description 6' },
-//     { id: 7, name: 'Product 4', image: Product2, description: 'Description 7' },
-//   ],
-//   4: [
-//     { id: 8, name: 'Product 5', image: Product2, description: 'Description 8' },
-//     { id: 9, name: 'Product 6', image: Product1, description: 'Description 9' },
-//   ],
-// };
+// import products from './ProductsData';
 
 // const EcommerceComponent = () => {
-//   const [selectedCategory, setSelectedCategory] = useState(categories[0].id);
+//   const categories = [...new Set(products.map(product => product.category))];
+//   const [activeCategory, setActiveCategory] = useState(categories[0]);
+
+//   // Filter products based on active category
+//   const filteredProducts = products.filter(product => product.category === activeCategory);
 
 //   return (
 //     <Container style={{ backgroundColor: '#e5f7fe', padding: '20px', borderRadius: '10px' }}>
-//         <h3>Top Categories</h3>
+//       <h3>Top Categories</h3>
 //       <Row>
 //         <Col md={3}>
-//           <ListGroup>
-//             {categories.map(category => (
-//               <ListGroup.Item
-//                 key={category.id}
-//                 action
-//                 onClick={() => setSelectedCategory(category.id)}
-//                 active={selectedCategory === category.id}
-//                 style={{ cursor: 'pointer', margin: '10px 0' }}
-//               >
-//                 {category.name}
-//               </ListGroup.Item>
+//           <Nav variant="pills" className="flex-column">
+//             {categories.map((category, index) => (
+//               <Nav.Item key={index}>
+//                 <Nav.Link
+//                   onMouseEnter={() => setActiveCategory(category)}
+//                   active={activeCategory === category}
+//                   style={{ cursor: 'pointer', margin: '10px 0' }}
+//                 >
+//                   {category}
+//                 </Nav.Link>
+//               </Nav.Item>
 //             ))}
-//           </ListGroup>
+//           </Nav>
 //         </Col>
 //         <Col md={9}>
 //           <Row>
-//             {products[selectedCategory].map(product => (
+//             {filteredProducts.map((product) => (
 //               <Col md={4} key={product.id} style={{ marginBottom: '20px' }}>
 //                 <Card style={{ width: '100%', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
-//                   <Card.Img variant="top" src={product.image} style={{ height: '150px', objectFit: 'cover' }} />
+//                   <Card.Img variant="top" src={product.images[0]} style={{ height: '150px', objectFit: 'contain' }} />
 //                   <Card.Body>
 //                     <Card.Title>{product.name}</Card.Title>
-//                     <Card.Text>{product.description}</Card.Text>
+//                     <Card.Text>
+//                       {product.description.longDescription} {/* Adjust this line to render the correct property */}
+//                     </Card.Text>
 //                     <Button variant="primary">Buy Now</Button>
 //                   </Card.Body>
 //                 </Card>
@@ -80,81 +59,72 @@
 
 
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/ShopByCategories.css';
-import Product2 from '../assets/product-images/product2.webp';
-import Product1 from '../assets/product-images/product1.jpg';
-
-const categories = [
-  { id: 1, name: 'Personal care' },
-  { id: 2, name: 'Healthcare device' },
-  { id: 3, name: 'Vitamins & supplement' },
-  { id: 4, name: 'Diabetes' },
-];
-
-const products = {
-  1: [
-    { id: 1, name: 'Product 1', image: Product2, description: 'Description 1' },
-    { id: 2, name: 'Product 2', image: Product1, description: 'Description 2' },
-  ],
-  2: [
-    { id: 3, name: 'BP Monitors', image: Product2, description: 'Description 3' },
-    { id: 4, name: 'Sterilizers', image: Product1, description: 'Description 4' },
-    { id: 5, name: 'EKG Machine', image: Product2, description: 'Description 5' },
-  ],
-  3: [
-    { id: 6, name: 'Product 3', image: Product1, description: 'Description 6' },
-    { id: 7, name: 'Product 4', image: Product2, description: 'Description 7' },
-  ],
-  4: [
-    { id: 8, name: 'Product 5', image: Product2, description: 'Description 8' },
-    { id: 9, name: 'Product 6', image: Product1, description: 'Description 9' },
-  ],
-};
+import products from './ProductsData';
 
 const EcommerceComponent = () => {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState(categories[0].id);
+  const categories = [...new Set(products.map(product => product.category))];
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
 
-  const handleCategoryClick = (categoryId) => {
-    navigate(`/categories/${categoryId}`);
+  // Filter products based on active category
+  const filteredProducts = products.filter(product => product.category === activeCategory);
+
+  const handleViewMore = () => {
+    navigate(`/categories/2`);
+    // navigate(`/categories/${activeCategory}`);
   };
 
   return (
     <Container style={{ backgroundColor: '#e5f7fe', padding: '20px', borderRadius: '10px' }}>
-      <h3>Top Categories</h3>
       <Row>
+      <h3>Top Categories</h3>
+
+      <div style={{ textAlign: 'right', marginBottom: '20px' }}>
+            <Button variant="secondary" onClick={handleViewMore}>
+              View More
+            </Button>
+          </div>
         <Col md={3}>
-          <ListGroup>
-            {categories.map(category => (
-              <ListGroup.Item
-                key={category.id}
-                action
-                onClick={() => handleCategoryClick(category.id)}
-                style={{ cursor: 'pointer', margin: '10px 0' }}
-              >
-                {category.name}
-              </ListGroup.Item>
+          <Nav variant="pills" className="flex-column">
+            {categories.map((category, index) => (
+              <Nav.Item key={index}>
+                <Nav.Link
+                  onClick={() => setActiveCategory(category)}
+                  active={activeCategory === category}
+                  style={{ cursor: 'pointer', margin: '10px 0' }}
+                >
+                  {category}
+                </Nav.Link>
+              </Nav.Item>
             ))}
-          </ListGroup>
+          </Nav>
         </Col>
         <Col md={9}>
           <Row>
-            {products[selectedCategory].map(product => (
+            {filteredProducts.map((product) => (
               <Col md={4} key={product.id} style={{ marginBottom: '20px' }}>
                 <Card style={{ width: '100%', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
-                  <Card.Img variant="top" src={product.image} style={{ height: '150px', objectFit: 'cover' }} />
+                  <Card.Img variant="top" src={product.images[0]} style={{ height: '150px', objectFit: 'contain' }} />
                   <Card.Body>
                     <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>{product.description}</Card.Text>
+                    <Card.Text>{product.brand}</Card.Text>
+                    {/* <Card.Text>{product.description.longDescription}</Card.Text> */}
                     <Button variant="primary">Buy Now</Button>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
           </Row>
+          {/* <div style={{ textAlign: 'right', marginTop: '20px' }}>
+            <Button variant="secondary" onClick={handleViewMore}>
+              View More
+            </Button>
+          </div> */}
+          
         </Col>
       </Row>
     </Container>
@@ -162,3 +132,7 @@ const EcommerceComponent = () => {
 };
 
 export default EcommerceComponent;
+
+
+
+//  atyre ama setting padyu jema navigate krti vakhte static value as 2 id pass kriye che pn apde actually category name pass krvanau che ane productlistingpage pr je category name hoi ae category na products dekhadvana che

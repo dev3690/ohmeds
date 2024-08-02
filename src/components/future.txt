@@ -8,7 +8,12 @@ Things to do
 8. Customer Review na card vache space add krvani che --> Done
 
 10. Category page pr sorting chalu krvanu che --> Done
+11. Product Card ma details add krvani che --> Done
+12. Mobile view ma 2 card ava joiye per row --> Done
+13. Paginatation feature bug --> Done
+15. refresh kriye che to direct login page pr redirect kri de che... ae prblm --> Done
 
+14. breadcrumb sarkhu styling apvani che --> Done
 -----------------------------------------------------------------------------------------------------------------------------
  
  |``\     /\     |  /   ```|```         |                           
@@ -18,16 +23,17 @@ Things to do
                                        \!/                
 ----------------------------------------------------------------------------------------------------------------------------
 
-6. Login and sign in page with private routes
+6. Login and sign in page with private routes 
 7. Header thodu sarkhu krvanu che, logo pr click kru to home avu joiye,  
 9. Customer review j home page pr che eno bug 
 
 
-11. Product Card ma details add krvani che
-12. Mobile view ma 2 card ava joiye per row
-13. Paginatation feature bug 
-14. breadcrumb sarkhu styling apvani che
+17. Profile page 
+18. Add to cart page 
 
+20. Database banavano che, login sign up and products ne display krva
 
-15. refresh kriye che to direct login page pr redirect kri de che... ae prblm
 16. category section in home page styling sarkhu from truemeds
+19. Koi b nava page pr jaiye redirect thaine, to top pr page avu joiye apdi screen, naki niche scroll kreli
+
+21. Product data ni andr apde details add kriye k how mush discount, which category, company name,

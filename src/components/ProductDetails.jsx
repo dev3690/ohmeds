@@ -43,7 +43,7 @@ const ProductDetail = () => {
     };
 
     return (
-        <>
+        <div style={{marginTop: '160px'}}>
             <Breadcrumbs />
             <div className="product-detail-container">
                 <div className="product-detail-carousel">
@@ -188,7 +188,7 @@ const ProductDetail = () => {
                 <CustomerReviews />
 
 
-        </>
+        </div>
     );
 };
 

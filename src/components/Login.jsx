@@ -1,8 +1,6 @@
 
-
-
 import React, { useState } from 'react';
-import { TextField, Button, IconButton } from '@mui/material';
+import { TextField, Button, IconButton, Link } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -10,15 +8,29 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useAuth } from '../components/AuthContext';
 import '../styles/Login.css';
 import product1 from '../assets/product-images/product1.jpg';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Login = () => {
   const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
+
   const handleLogin = () => {
-    login(username, password);
+    const userData = { name: username }; // You can add more user details here
+    login(userData);
   };
+  const handleDonthaveanaccount = () => {
+    // const userData = { name: username }; // You can add more user details here
+    // login(userData);
+    navigate('/register');
+  };
+
+
 
   return (
     <div className="login-container">
@@ -55,7 +67,7 @@ const Login = () => {
           Login
         </Button>
         <div className="social-login">
-          <p>Don't have an account?</p>
+        <Link to="/register" onClick={handleDonthaveanaccount} >Don't have an account?</Link>
           <p>or</p>
           <div className="social-icons">
             <IconButton>
@@ -75,4 +87,3 @@ const Login = () => {
 };
 
 export default Login;
-    

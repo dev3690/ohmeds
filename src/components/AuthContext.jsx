@@ -1,20 +1,47 @@
 
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import React, { createContext, useContext, useState } from 'react';
+const AuthContext = createContext();
 
-//   const navigate = useNavigate();
-  const AuthContext = createContext();
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
 
 export const AuthProvider = ({ children, navigate }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('isAuthenticated') === 'true';
+  });
+
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      localStorage.setItem('isAuthenticated', 'true');
+    } else {
+      localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('user');
+    }
+  }, [isAuthenticated]);
 
   const login = (username, password) => {
-    if (username === 'user1' && password === 'user123') {
-      setIsAuthenticated(true);
-      navigate('/');
-    } else {
-      alert('Incorrect username or password');
-    }
+    // Handle login logic
+    setIsAuthenticated(true);
+    setUser({ username });
+    localStorage.setItem('user', JSON.stringify({ username }));
+    navigate('/');
+  };
+
+  const register = (userData) => {
+    // Handle registration logic
+    setIsAuthenticated(true);
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+    navigate('/');
   };
 
   const logout = () => {
@@ -23,10 +50,11 @@ export const AuthProvider = ({ children, navigate }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+
+export default AuthContext;

@@ -41,6 +41,7 @@ const HeroContainer = styled.section`
   align-items: center;
   justify-content: center;
   padding: 20px;
+  margin-top : 140px;
 `;
 
 const HeroText = styled.div`
