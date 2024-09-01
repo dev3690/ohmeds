@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
@@ -15,7 +14,8 @@ import ProductListingPage from './components/ProductListingPage';
 import ShopByCategories from './components/ShopByCategories';
 import Registration  from './components/Registration';
 import ProfilePage from './components/ProfilePage';
-
+import AddToCart from './components/AddToCart';
+import AdminDashboard from './admin/Dashboard/AdminDashboard';
 function AppWrapper() {
   const navigate = useNavigate();
 
@@ -62,6 +62,23 @@ function AppWrapper() {
           element={
             <ProtectedRoute>
               <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <AddToCart />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/dashboard"
+          element={
+            // <ProtectedRoute adminOnly>
+            <ProtectedRoute>
+              <AdminDashboard />
             </ProtectedRoute>
           }
         />

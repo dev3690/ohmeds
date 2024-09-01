@@ -1,5 +1,3 @@
-
-
 // --------------------------------------------------------------------------------------------------------------------
 
 import React, { useState, useContext } from 'react';
@@ -10,36 +8,20 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
-import { FaUser, FaShoppingCart } from 'react-icons/fa';
-import { Box, Button, Container, Grid, useMediaQuery } from '@mui/material';
+import { FaUser, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
+import { Box, Button, Container, Grid, useMediaQuery, InputBase } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import logo from '../assets/ohmeds-logo.jpg';
 import AuthContext from './AuthContext';  // Assuming you have AuthContext for user management
+import SearchIcon from '@mui/icons-material/Search';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [anchorElMedicine, setAnchorElMedicine] = useState(null);
-  const [anchorElVitamins, setAnchorElVitamins] = useState(null);
   const navigate = useNavigate();
   const isMobileOrTablet = useMediaQuery((theme) => theme.breakpoints.down('md'));
-
-  const handleOpenMedicineMenu = (event) => {
-    setAnchorElMedicine(event.currentTarget);
-  };
-
-  const handleCloseMedicineMenu = () => {
-    setAnchorElMedicine(null);
-  };
-
-  const handleOpenVitaminsMenu = (event) => {
-    setAnchorElVitamins(event.currentTarget);
-  };
-
-  const handleCloseVitaminsMenu = () => {
-    setAnchorElVitamins(null);
-  };
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -56,11 +38,20 @@ const Header = () => {
     navigate('/profile');
   };
 
+  const handleCartClick = () => {
+    navigate('/cart');
+  };
+
+  const handleLogout = () => {
+    logout(); // Call the logout function from AuthContext
+    navigate('/login'); // Redirect to login page
+  };
+
   return (
     <>
-      <AppBar position="fixed" sx={{ borderRadius: 3, mb: 4 }} color="default" elevation={3}>
-        <Container maxWidth="false">
-          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <AppBar position="fixed" sx={{ backgroundColor: 'white', color: 'black', boxShadow: 'none', borderBottom: '1px solid #e0e0e0' }}>
+        <Container maxWidth="xl">
+          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1 }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               {isMobileOrTablet && (
                 <IconButton
@@ -68,126 +59,72 @@ const Header = () => {
                   color="inherit"
                   aria-label="menu"
                   onClick={toggleDrawer(true)}
+                  sx={{ mr: 1 }}
                 >
                   <MenuIcon />
                 </IconButton>
               )}
               <img
                 src={logo}
-                alt="OH MEDS"
-                style={{ width: 50, height: 'auto', marginRight: 10, cursor: 'pointer' }}
+                alt="TrueMeds"
+                style={{ width: 80, height: 'auto', cursor: 'pointer' }}
                 onClick={handleLogoClick}
               />
-              <Typography variant="h6" color="inherit" sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
-                OHMEDS
-              </Typography>
             </Box>
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', alignItems: 'left', marginLeft: 5 }}>
-              <Typography variant="h5" color="inherit" sx={{ marginBottom: 1 }}>
-                Hello {user ? user.name : 'Guest'}
-              </Typography>
-              <Grid container spacing={4} direction="row">
-                <Grid item>
-                  <Button
-                    color="inherit"
-                    onMouseEnter={handleOpenMedicineMenu}
-                    onMouseLeave={handleCloseMedicineMenu}
-                  >
-                    Medicine
-                  </Button>
-                  <Menu
-                    anchorEl={anchorElMedicine}
-                    open={Boolean(anchorElMedicine)}
-                    onClose={handleCloseMedicineMenu}
-                    disablePortal
-                  >
-                    <Grid container spacing={1} padding={2}>
-                      <Grid item xs={6}>
-                        <MenuItem>Category 1</MenuItem>
-                        <MenuItem>Category 2</MenuItem>
-                        <MenuItem>Category 3</MenuItem>
-                        <MenuItem>Category 4</MenuItem>
-                        <MenuItem>Category 5</MenuItem>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <MenuItem>Category 6</MenuItem>
-                        <MenuItem>Category 7</MenuItem>
-                        <MenuItem>Category 8</MenuItem>
-                        <MenuItem>Category 9</MenuItem>
-                        <MenuItem>Category 10</MenuItem>
-                      </Grid>
-                    </Grid>
-                  </Menu>
-                </Grid>
-                <Grid item>
-                  <Button
-                    color="inherit"
-                    onMouseEnter={handleOpenVitaminsMenu}
-                    onMouseLeave={handleCloseVitaminsMenu}
-                  >
-                    Vitamins & Minerals
-                  </Button>
-                  <Menu
-                    anchorEl={anchorElVitamins}
-                    open={Boolean(anchorElVitamins)}
-                    onClose={handleCloseVitaminsMenu}
-                  >
-                    <Grid container spacing={1} padding={2}>
-                      <Grid item xs={4}>
-                        <MenuItem>Category 1</MenuItem>
-                        <MenuItem>Category 2</MenuItem>
-                        <MenuItem>Category 3</MenuItem>
-                        <MenuItem>Category 4</MenuItem>
-                        <MenuItem>Category 5</MenuItem>
-                      </Grid>
-                      <Grid item xs={4}>
-                        <MenuItem>Category 6</MenuItem>
-                        <MenuItem>Category 7</MenuItem>
-                        <MenuItem>Category 8</MenuItem>
-                        <MenuItem>Category 9</MenuItem>
-                        <MenuItem>Category 10</MenuItem>
-                      </Grid>
-                      <Grid item xs={4}>
-                        <MenuItem>Category 11</MenuItem>
-                        <MenuItem>Category 12</MenuItem>
-                        <MenuItem>Category 13</MenuItem>
-                        <MenuItem>Category 14</MenuItem>
-                        <MenuItem>Category 15</MenuItem>
-                      </Grid>
-                    </Grid>
-                  </Menu>
-                </Grid>
-                <Grid item>
-                  <Button color="inherit">Healthcare devices</Button>
-                </Grid>
-                <Grid item>
-                  <Button color="inherit">Offers</Button>
-                </Grid>
-                <Grid item>
-                  <Button color="inherit">About Us</Button>
-                </Grid>
-              </Grid>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', marginLeft: 'auto' }}>
-              {user ? (
-                <>
-                  <Button color="inherit" onClick={handleProfileClick}>
-                    Profile
-                  </Button>
-                  <Button color="inherit" onClick={logout}>
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <IconButton color="inherit" onClick={() => navigate('/login')}>
-                  <FaUser /> Login
-                </IconButton>
-              )}
-              <IconButton color="inherit">
-                <FaShoppingCart /> Cart
+
+            {!isMobileOrTablet && (
+              <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
+                {/* <Typography variant="body2" sx={{ mr: 1 }}>Welcome, {user ? user.name : 'Guest'}!</Typography> */}
+                <Typography variant="h4" onClick={handleLogoClick} sx={{ cursor: 'pointer', fontWeight: 'bold', color: '#0066cc' }}>Medskwik</Typography>
+              </Box>
+            )}
+
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <IconButton color="inherit" onClick={handleProfileClick}>
+                <FaUser />
               </IconButton>
+              <Typography variant="body2" sx={{ mr: 2, cursor: 'pointer' }} onClick={handleProfileClick}>Dev</Typography>
+
+              <IconButton color="inherit" onClick={handleCartClick}>
+                <FaShoppingCart />
+              </IconButton>
+              <Typography variant="body2" sx={{ cursor: 'pointer' }} onClick={handleCartClick}>Cart</Typography>
+              {!isMobileOrTablet && 
+               ( <><IconButton color="inherit" sx={{ ml: 2 }} onClick={handleLogout}>
+                  <FaSignOutAlt />
+                </IconButton>
+              <Typography variant="body2" onClick={handleLogout} sx={{ cursor: 'pointer' }}>Logout</Typography>
+              </>
+              )}
+
             </Box>
           </Toolbar>
+
+          <Box sx={{ py: 1 }}>
+            <Box sx={{ position: 'relative', backgroundColor: '#f5f5f5', borderRadius: 2, width: '100%' }}>
+              <InputBase
+                placeholder="Search for TELMA"
+                sx={{ ml: 2, flex: 1, width: '100%', py: 1 }}
+              />
+              <IconButton type="submit" sx={{ p: '10px', position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)' }}>
+                <SearchIcon />
+              </IconButton>
+            </Box>
+          </Box>
+
+          {!isMobileOrTablet && (
+            <Box sx={{ borderTop: '1px solid #e0e0e0', py: 1 }}>
+              <Grid container spacing={2} justifyContent="center">
+                {['Medicines', 'Personal Care', 'Health Conditions', 'Vitamins & Supplements', 'Diabetes Care', 'Healthcare Devices', 'Health Article'].map((item) => (
+                  <Grid item key={item}>
+                    <Button color="inherit" sx={{ textTransform: 'none' }}>
+                      {item}
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          )}
         </Container>
       </AppBar>
       <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />

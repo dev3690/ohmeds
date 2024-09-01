@@ -33,11 +33,11 @@ const Registration = () => {
     
     
     return (
-        <div className="registration-container">
-            <div className="registration-image">
-                <img src={product1} alt="Registration" />
+        <div className="registration-container" style={{paddingTop : '20%', marginBottom: '200px'}} >
+            <div className="registration-image m-5" style={{marginTop: '100px'}} >
+                <img src={product1} alt="Registration"  />
             </div>
-            <div className="registration-form">
+            <div className="registration-form" >
                 <h2>Create an Account</h2>
                 <p>Enter your details to register</p>
                 <TextField

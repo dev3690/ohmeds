@@ -20,7 +20,7 @@
 .carousel-image {
   width: 100%; /* Set width to 100% of the image */
   height: 60vh; /* Set height to 60% of the viewport height */
-  object-fit: fill; /* Ensure the image covers the entire carousel item */
+  object-fit: contain; /* Ensure the image covers the entire carousel item */
 }
 
 .carousel-caption {

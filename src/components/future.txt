@@ -24,16 +24,23 @@ Things to do
 ----------------------------------------------------------------------------------------------------------------------------
 
 6. Login and sign in page with private routes 
-7. Header thodu sarkhu krvanu che, logo pr click kru to home avu joiye,  
+7. Header thodu sarkhu krvanu che, logo pr click kru to home avu joiye, and design  
 9. Customer review j home page pr che eno bug 
 
-
-17. Profile page 
+17. Profile page, add basic features like editing personal info
 18. Add to cart page 
+
 
 20. Database banavano che, login sign up and products ne display krva
 
 16. category section in home page styling sarkhu from truemeds
 19. Koi b nava page pr jaiye redirect thaine, to top pr page avu joiye apdi screen, naki niche scroll kreli
 
-21. Product data ni andr apde details add kriye k how mush discount, which category, company name,
+21. Product data ni andr apde details add kriye k how much discount, which category, company name,
+
+22. Header and sidebar mobile varu ae same krvanu che
+
+Shopbycategory ni runtime error che niche
+//  atyre ama setting padyu jema navigate krti vakhte static value as 2 id pass kriye che pn apde actually category name pass krvanau che ane productlistingpage pr je category name hoi ae category na products dekhadvana che
+
+23. Mediclaim page
