@@ -44,3 +44,204 @@ Shopbycategory ni runtime error che niche
 //  atyre ama setting padyu jema navigate krti vakhte static value as 2 id pass kriye che pn apde actually category name pass krvanau che ane productlistingpage pr je category name hoi ae category na products dekhadvana che
 
 23. Mediclaim page
+
+24. Product Management page : add new product ma category id field ma direct id  thi category name ai javu joiye, same for all
+25. Show all fields in the table of product management page 
+26. Edit and delete button turn on 
+27. 
+
+
+
+
+
+
+
+
+Ohmeds Database
+
+Old Database Niche 
+
+Table users {
+  id integer [primary key]
+  image varchar(255)
+  name varchar(100) [not null]
+  username varchar(100) [not null]
+  email varchar(100) [unique, not null]
+  password varchar(255) [not null]
+  mobile_number varchar(20)
+  gender varchar(10)
+  address varchar(255)
+  pincode integer
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table categories {
+  id integer [primary key]
+  name varchar(100) [not null]
+  image varchar(255)
+  description text
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table products {
+  id integer [primary key]
+  name varchar(255) [not null]
+  images text[]
+  badge varchar(50)
+  rating decimal(3, 2)
+  price decimal(10, 2) [not null]
+  original_price decimal(10, 2) [not null]
+  category_id integer [not null, ref: > categories.id]
+  brand varchar(100)
+  medicine_type varchar(50)
+  mfg_date date
+  exp_date date
+  life_span integer
+  stock_quantity integer
+  short_description text
+  long_description text
+  key_benefits text
+  ingredients text
+  side_effects text
+  how_to_use text
+  facts text[]
+  prescription_needed boolean
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table received_products {
+  id integer [primary key]
+  product_id integer [not null, ref: > products.id]
+  vendor_id integer [ref: > vendor.id]
+  quantity integer [not null]
+  received_date timestamp [default: 'CURRENT_TIMESTAMP']
+  inspected boolean [default: false]
+  notes text
+}
+
+Table stocked_products {
+  id integer [primary key]
+  received_product_id integer [not null, ref: > received_products.id]
+  quantity integer [not null]
+  stocked_date timestamp [default: 'CURRENT_TIMESTAMP']
+  location varchar(100)
+  notes text
+}
+
+Table orders {
+  id integer [primary key]
+  user_id integer [not null, ref: > users.id]
+  total_amount decimal(10, 2) [not null]
+  status enum('pending', 'processing', 'shipped', 'delivered', 'cancelled') [default: 'pending']
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table order_items {
+  id integer [primary key]
+  order_id integer [not null, ref: > orders.id]
+  product_id integer [not null, ref: > products.id]
+  quantity integer [not null]
+  price decimal(10, 2) [not null]
+  prescription image
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table completed_orders {
+  id integer [primary key]
+  order_id integer [not null, ref: > orders.id]
+  user_id integer [not null, ref: > users.id]
+  total_amount decimal(10, 2) [not null]
+  completed_date timestamp [default: 'CURRENT_TIMESTAMP']
+  sales_amount decimal(10, 2) [not null]
+}
+
+Table completed_order_items {
+  id integer [primary key]
+  completed_order_id integer [not null, ref: > completed_orders.id]
+  product_id integer [not null, ref: > products.id]
+  quantity integer [not null]
+  price decimal(10, 2) [not null]
+}
+
+Table inventory {
+  id integer [primary key]
+  product_id integer [not null, ref: > products.id]
+  quantity integer [not null]
+  last_updated timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table mediclaims {
+  id integer [primary key]
+  user_id integer [not null, ref: > users.id]
+  policy_number varchar(50) [unique, not null]
+  coverage_amount decimal(10, 2) [not null]
+  start_date date [not null]
+  end_date date [not null]
+  status enum('active', 'expired', 'cancelled') [default: 'active']
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table reviews {
+  id integer [primary key]
+  user_id integer [not null, ref: > users.id]
+  product_id integer [not null, ref: > products.id]
+  rating integer [note: 'Rating between 1 and 5' ]
+  comment text
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table wishlist {
+  id integer [primary key]
+  user_id integer [not null, ref: > users.id]
+  product_id integer [not null, ref: > products.id]
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table vendor {
+  id integer [primary key]
+  name varchar(100)
+  address varchar(255)
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table admin {
+  id integer [primary key]
+  name varchar(100)
+  username varchar(100)
+  password varchar(255)
+  email varchar(100)
+  role varchar(50)
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table offers {
+  id integer [primary key]
+  offer_name varchar(100)
+  image varchar(255)
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table faqs {
+  id integer [primary key]
+  product_id integer [ref: > products.id]
+  question text
+  answer text
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+
+Ref: "orders"."updated_at" < "admin"."username"
+
+=============================================================================================================================================================================
+
+

@@ -3,14 +3,32 @@ import { Container, Row, Col, Card, ListGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/ProfilePage.css';
 import man from '../assets/Reviews/man.png'
+import { getUserData, USER, callAxiosApi } from '../utils/api_utils';
+import { useEffect } from 'react';
 
 const ProfilePage = () => {
     const [selectedSection, setSelectedSection] = useState('accountInfo');
+    const [users, setUsers] = useState([]);
 
-    const renderSection = () => {
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await callAxiosApi(getUserData);
+                setUsers(response.data[1]);
+                // console.log("users", users)
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+        fetchUsers();
+    }, []);
+
+
+    const renderSection = (users) => {
         switch (selectedSection) {
             case 'accountInfo':
-                return <AccountInfo />;
+                return <AccountInfo users={users} />;
             case 'myOrders':
                 return <MyOrders />;
             case 'myWishlist':
@@ -18,33 +36,36 @@ const ProfilePage = () => {
             case 'offers':
                 return <Offers />;
             default:
-                return <AccountInfo />;
+                return <AccountInfo users={users} />;
         }
     };
 
+
+
+
     return (
-        <Container  className="profile-page" style={{ marginTop: '200px' }}>
+        <Container className="profile-page" style={{ marginTop: '200px' }}>
             <Row>
                 <Col md={3}>
                     <Card className="user-card">
                         <Card.Body className="text-center">
                             <Card.Img variant="top" src={man} className="rounded-circle mb-1" />
-                            <Card.Title>Dev Panchal</Card.Title>
-                            <Card.Text>demo@mail.com.com</Card.Text>
-                            <Card.Text>+91-1234568790</Card.Text>
+                            <Card.Title>{users.name}</Card.Title>
+                            <Card.Text>{users.email}</Card.Text>
+                            <Card.Text>{users.gender}</Card.Text>
                         </Card.Body>
                     </Card>
                     <ListGroup className="mt-3">
-                        <ListGroup.Item action onClick={() => setSelectedSection('accountInfo')}>Account Information</ListGroup.Item>
+                        <ListGroup.Item action onClick={(users) => setSelectedSection('accountInfo')}>Account Information</ListGroup.Item>
                         <ListGroup.Item action onClick={() => setSelectedSection('myOrders')}>My Orders</ListGroup.Item>
                         <ListGroup.Item action onClick={() => setSelectedSection('myWishlist')}>My WishList</ListGroup.Item>
                         <ListGroup.Item action onClick={() => setSelectedSection('offers')}>Offers</ListGroup.Item>
                     </ListGroup>
                 </Col>
                 <Col md={9}>
-                <Card.Body className="text-left">
-
-                    {renderSection()}
+                    <Card.Body className="text-left">
+                        {renderSection(users)}
+                        {/* {renderSection()} */}
                     </Card.Body>
 
                 </Col>
@@ -53,22 +74,22 @@ const ProfilePage = () => {
     );
 };
 
-const AccountInfo = () => (
-    <Card className="info-card" style={{paddingBottom : '15%'}}>
+const AccountInfo = (users) => (
+    <Card className="info-card" style={{ paddingBottom: '15%' }}>
         <Card.Header>Account Information</Card.Header>
         <Card.Body>
             <Card.Title>Login Information</Card.Title>
-            <Card.Text>Name: Dev Panchal </Card.Text>
-            <Card.Text>Email: demo@mail.com.com</Card.Text>
-            <Card.Text>Mobile Number: +91-1234567890</Card.Text>
-            <Card.Text>Gender: Male</Card.Text>
+            <Card.Text>Name: {users.users.name} </Card.Text>
+            <Card.Text>Email: {users.users.email}</Card.Text>
+            <Card.Text>Mobile Number: {users.users.mobile}</Card.Text>
+            <Card.Text>Gender: {users.users.gender}</Card.Text>
             <Button variant="primary">Edit Profile</Button>
         </Card.Body>
     </Card>
 );
 
 const MyOrders = () => (
-    <Card className="info-card" style={{paddingBottom : '20%'}}>
+    <Card className="info-card" style={{ paddingBottom: '20%' }}>
         <Card.Header>My Orders</Card.Header>
         <Card.Body>
             <Card.Title>Past Orders</Card.Title>
@@ -78,7 +99,7 @@ const MyOrders = () => (
 );
 
 const MyWishlist = () => (
-    <Card className="info-card" style={{paddingBottom : '20%'}}>
+    <Card className="info-card" style={{ paddingBottom: '20%' }}>
         <Card.Header>My Wishlist</Card.Header>
         <Card.Body>
             <Card.Title>Wishlist Items</Card.Title>
@@ -88,7 +109,7 @@ const MyWishlist = () => (
 );
 
 const Offers = () => (
-    <Card className="info-card" style={{paddingBottom : '20%'}}>
+    <Card className="info-card" style={{ paddingBottom: '20%' }}>
         <Card.Header>Offers</Card.Header>
         <Card.Body>
             <Card.Title>Available Offers</Card.Title>

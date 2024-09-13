@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,8 +7,8 @@ export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-
-export const AuthProvider = ({ children, navigate }) => {
+export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem('isAuthenticated') === 'true';
   });
@@ -55,6 +54,5 @@ export const AuthProvider = ({ children, navigate }) => {
     </AuthContext.Provider>
   );
 };
-
 
 export default AuthContext;

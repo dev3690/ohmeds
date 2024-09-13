@@ -1,90 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
-import Home from './pages/Home';
 import Header from './components/Header';
-import ProductsCards from './components/ProductsCards';
-import ProductDetails from './components/ProductDetails';
-import Login from './components/Login';
 import Footer from './components/Footer';
-import { AuthProvider } from './components/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import ProductListingPage from './components/ProductListingPage';
-import ShopByCategories from './components/ShopByCategories';
-import Registration  from './components/Registration';
-import ProfilePage from './components/ProfilePage';
-import AddToCart from './components/AddToCart';
-import AdminDashboard from './admin/Dashboard/AdminDashboard';
+import { AuthProvider, useAuth } from './components/AuthContext';
+import AppRoutes from './routes/AppRoutes';
+
 function AppWrapper() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { isAuthenticated } = useAuth();
+
+  const showHeader = isAuthenticated && location.pathname !== '/login' && location.pathname !== '/register' && !location.pathname.startsWith('/admin');
+  const showFooter = !location.pathname.startsWith('/admin');
 
   return (
-    <AuthProvider navigate={navigate}>
-      <Header />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Registration />} />  
-        <Route
-          path="/"  
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/products"
-          element={
-            <ProtectedRoute>
-              <ProductsCards />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/products/:id"
-          element={
-            <ProtectedRoute>
-              <ProductDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/categories/:categoryId"
-          element={
-            <ProtectedRoute>
-              <ProductListingPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <ProtectedRoute>
-              <AddToCart />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/dashboard"
-          element={
-            // <ProtectedRoute adminOnly>
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-      <Footer />
-    </AuthProvider>
+    <>
+      {showHeader && <Header />}
+      <AppRoutes />
+      {showFooter && <Footer />}
+    </>
   );
 }
 
@@ -92,7 +28,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <AppWrapper />
+        <AuthProvider>
+          <AppWrapper />
+        </AuthProvider>
       </Router>
     </ThemeProvider>
   );

@@ -23,6 +23,8 @@ const Header = () => {
   const navigate = useNavigate();
   const isMobileOrTablet = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
+  console.log("User logged in ==>", user);
+
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -74,7 +76,8 @@ const Header = () => {
 
             {!isMobileOrTablet && (
               <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
-                {/* <Typography variant="body2" sx={{ mr: 1 }}>Welcome, {user ? user.name : 'Guest'}!</Typography> */}
+                
+                {/* <Typography variant="body2" sx={{ mr: 1 }}>Welcome, {user ? user.username.name : 'Guest'}!</Typography> */}
                 <Typography variant="h4" onClick={handleLogoClick} sx={{ cursor: 'pointer', fontWeight: 'bold', color: '#0066cc' }}>Medskwik</Typography>
               </Box>
             )}
@@ -83,7 +86,7 @@ const Header = () => {
               <IconButton color="inherit" onClick={handleProfileClick}>
                 <FaUser />
               </IconButton>
-              <Typography variant="body2" sx={{ mr: 2, cursor: 'pointer' }} onClick={handleProfileClick}>Dev</Typography>
+              <Typography variant="body2" sx={{ mr: 2, cursor: 'pointer' }} onClick={handleProfileClick}>{user.fullname || user.username.name }</Typography>
 
               <IconButton color="inherit" onClick={handleCartClick}>
                 <FaShoppingCart />
