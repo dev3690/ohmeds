@@ -15,6 +15,10 @@ import {
   Modal,
   TablePagination,
   TableSortLabel,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -48,25 +52,41 @@ const ProductManagement = () => {
     how_to_use: '',
     facts: '',
     prescription_needed: false,
+    batch_number: '',
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [orderBy, setOrderBy] = useState('name');
   const [order, setOrder] = useState('asc');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [vendors, setVendors] = useState([]);
+  const [medicineTypes, setMedicineTypes] = useState([]);
 
   const fetchProducts = async () => {
     try {
       const response = await callAxiosApi(getProductsData);
       setProducts(response.data);
+
+      // Extract unique values for dropdowns
+      const uniqueCategories = [...new Set(response.data.map(product => product.category_id))];
+      const uniqueBrands = [...new Set(response.data.map(product => product.brand))];
+      const uniqueVendors = [...new Set(response.data.map(product => product.vendor_id))];
+      const uniqueMedicineTypes = [...new Set(response.data.map(product => product.medicine_type))];
+
+      setCategories(uniqueCategories);
+      setBrands(uniqueBrands);
+      setVendors(uniqueVendors);
+      setMedicineTypes(uniqueMedicineTypes);
     } catch (error) {
       console.error('Error fetching products:', error);
     }
   };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const handleOpenModal = (product = null) => {
     if (product) {
@@ -103,6 +123,7 @@ const ProductManagement = () => {
         how_to_use: '',
         facts: '',
         prescription_needed: false,
+        batch_number: '',
       });
     }
     setOpenModal(true);
@@ -115,7 +136,10 @@ const ProductManagement = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setNewProduct({ ...newProduct, [name]: value });
+    setNewProduct(prevProduct => ({
+      ...prevProduct,
+      [name]: value
+    }));
   };
 
   const handleImageChange = (event) => {
@@ -138,7 +162,7 @@ const ProductManagement = () => {
 
   const handleUpdateProduct = async () => {
     try {
-      const { id, created_at, updated_at, ...productToUpdate } = newProduct;
+      const { id, ...productToUpdate } = newProduct;
       productToUpdate.facts = productToUpdate.facts.split(',').map(fact => fact.trim());
       const response = await callAxiosApi(updateProduct(id), 'put', productToUpdate);
       setProducts(products.map(p => p.id === id ? response.data : p));
@@ -173,10 +197,11 @@ const ProductManagement = () => {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
   const handleChangeRowsPerPage = (event) => {
-  setRowsPerPage(parseInt(event.target.value, 10));
-  setPage(0); // Reset to the first page when changing rows per page
-};
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0); // Reset to the first page when changing rows per page
+  };
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -223,9 +248,21 @@ const ProductManagement = () => {
                 </TableSortLabel>
               </TableCell>
               <TableCell>Price</TableCell>
+              <TableCell>Original Price</TableCell>
+              <TableCell>Discount</TableCell>
               <TableCell>Category</TableCell>
               <TableCell>Brand</TableCell>
               <TableCell>Stock</TableCell>
+              <TableCell>Manufacturing Date</TableCell>
+              <TableCell>Expiration Date</TableCell>
+              <TableCell>Short Description</TableCell>
+              <TableCell>Long Description</TableCell>
+              <TableCell>Key Benefits</TableCell>
+              <TableCell>Ingredients</TableCell>
+              <TableCell>Side Effects</TableCell>
+              <TableCell>How to Use</TableCell>
+              <TableCell>Facts</TableCell>
+              <TableCell>Prescription Needed</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -234,9 +271,21 @@ const ProductManagement = () => {
               <TableRow key={product.id}>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.price}</TableCell>
+                <TableCell>{product.original_price}</TableCell>
+                <TableCell>{product.discount}</TableCell>
                 <TableCell>{product.category_id}</TableCell>
                 <TableCell>{product.brand}</TableCell>
                 <TableCell>{product.stock_quantity}</TableCell>
+                <TableCell>{product.mfg_date ? new Date(product.mfg_date).toLocaleDateString() : 'N/A'}</TableCell>
+                <TableCell>{product.exp_date ? new Date(product.exp_date).toLocaleDateString() : 'N/A'}</TableCell>
+                <TableCell>{product.short_description}</TableCell>
+                <TableCell>{product.long_description}</TableCell>
+                <TableCell>{product.key_benefits}</TableCell>
+                <TableCell>{product.ingredients}</TableCell>
+                <TableCell>{product.side_effects}</TableCell>
+                <TableCell>{product.how_to_use}</TableCell>
+                <TableCell>{product.facts}</TableCell>
+                <TableCell>{product.prescription_needed ? 'Yes' : 'No'}</TableCell>
                 <TableCell>
                   <IconButton onClick={() => handleOpenModal(product)}>
                     <EditIcon />
@@ -256,10 +305,13 @@ const ProductManagement = () => {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 400,
+          width: '80%', // Make it responsive
+          maxWidth: 600, // Set a max width
           bgcolor: 'background.paper',
           boxShadow: 24,
           p: 4,
+          overflowY: 'auto', // Make it scrollable
+          maxHeight: '80vh', // Limit height
         }}>
           <Typography variant="h6" component="h2" gutterBottom>
             {editingProduct ? 'Edit Product' : 'Create New Product'}
@@ -284,18 +336,104 @@ const ProductManagement = () => {
           <TextField
             fullWidth
             margin="normal"
-            name="category_id"
-            label="Category ID"
-            value={newProduct.category_id}
+            name="original_price"
+            label="Original Price"
+            value={newProduct.original_price}
             onChange={handleInputChange}
+            type="number"
           />
           <TextField
             fullWidth
             margin="normal"
+            name="discount"
+            label="Discount"
+            value={newProduct.discount}
+            onChange={handleInputChange}
+            type="number"
+          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Category</InputLabel>
+            <Select
+              name="category_id"
+              value={newProduct.category_id}
+              onChange={handleInputChange}
+            >
+              {categories.map((category) => (
+                <MenuItem key={category} value={category}>{category}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            margin="normal"
+            name="category_id"
+            label="New Category"
+            value={newProduct.category_id}
+            onChange={handleInputChange}
+            placeholder="Enter new category if not in list"
+          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Brand</InputLabel>
+            <Select
+              name="brand"
+              value={newProduct.brand}
+              onChange={handleInputChange}
+            >
+              {brands.map((brand) => (
+                <MenuItem key={brand} value={brand}>{brand}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            margin="normal"
             name="brand"
-            label="Brand"
+            label="New Brand"
             value={newProduct.brand}
             onChange={handleInputChange}
+            placeholder="Enter new brand if not in list"
+          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Vendor</InputLabel>
+            <Select
+              name="vendor_id"
+              value={newProduct.vendor_id}
+              onChange={handleInputChange}
+            >
+              {vendors.map((vendor) => (
+                <MenuItem key={vendor} value={vendor}>{vendor}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            margin="normal"
+            name="vendor_id"
+            label="New Vendor"
+            value={newProduct.vendor_id}
+            onChange={handleInputChange}
+            placeholder="Enter new vendor if not in list"
+          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Medicine Type</InputLabel>
+            <Select
+              name="medicine_type"
+              value={newProduct.medicine_type}
+              onChange={handleInputChange}
+            >
+              {medicineTypes.map((type) => (
+                <MenuItem key={type} value={type}>{type}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            margin="normal"
+            name="medicine_type"
+            label="New Medicine Type"
+            value={newProduct.medicine_type}
+            onChange={handleInputChange}
+            placeholder="Enter new medicine type if not in list"
           />
           <TextField
             fullWidth
@@ -325,6 +463,89 @@ const ProductManagement = () => {
             value={newProduct.exp_date}
             onChange={handleInputChange}
             InputLabelProps={{ shrink: true }}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            name="short_description"
+            label="Short Description"
+            value={newProduct.short_description}
+            onChange={handleInputChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            name="long_description"
+            label="Long Description"
+            value={newProduct.long_description}
+            onChange={handleInputChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            name="key_benefits"
+            label="Key Benefits"
+            value={newProduct.key_benefits}
+            onChange={handleInputChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            name="ingredients"
+            label="Ingredients"
+            value={newProduct.ingredients}
+            onChange={handleInputChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            name="side_effects"
+            label="Side Effects"
+            value={newProduct.side_effects}
+            onChange={handleInputChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            name="how_to_use"
+            label="How to Use"
+            value={newProduct.how_to_use}
+            onChange={handleInputChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            name="facts"
+            label="Facts"
+            value={newProduct.facts}
+            onChange={handleInputChange}
+          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Prescription Needed</InputLabel>
+            <Select
+              name="prescription_needed"
+              value={newProduct.prescription_needed}
+              onChange={handleInputChange}
+            >
+              <MenuItem value={true}>Yes</MenuItem>
+              <MenuItem value={false}>No</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            margin="normal"
+            name="life_span"
+            label="Life Span"
+            value={newProduct.life_span}
+            onChange={handleInputChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            name="batch_number"
+            label="Batch Number"
+            value={newProduct.batch_number}
+            onChange={handleInputChange}
           />
           <input
             type="file"
